@@ -24,6 +24,15 @@ with mp_pose.Pose(
 
     # Draw the pose annotation on the image.
     image.flags.writeable = True
+
+    #code from https://learnopencv.com/building-a-body-posture-analysis-system-using-mediapipe/
+    keypoints=pose.process(image)
+    lm = keypoints.pose_landmarks
+    lmPose = mp_pose.PoseLandmark
+    print(lm.landmark[lmPose.LEFT_ELBOW].x)
+    #print("now y")
+    #print(lm.landmark[lmPose.LEFT_ELBOW].y)
+
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     mp_drawing.draw_landmarks(
         image,
